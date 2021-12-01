@@ -1,0 +1,21 @@
+.hidden {
+    display: none;
+}
+
+.green-outline {
+    border-color: rgb(32, 126, 82);
+}
+
+.green-outline~label {
+    color: rgb(153, 230, 194);
+    opacity: 1;
+}
+
+.red-outline {
+    border-color: rgb(208, 67, 81);
+}
+
+.red-outline~label {
+    color: rgb(230, 153, 161);
+    opacity: 1;
+}

@@ -1,0 +1,40 @@
+{% for category in category_list %}
+    <p class="mt-3 mb-2">
+        <div class="btn-group">
+            <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-{{ category.pk }}" id="cat-head-{{ category.pk }}">
+                {{ category.name }}
+            </button>
+            <button type="button" class="btn btn-secondary btn-edit-category" data-cat="{{ category.pk }}" onclick="btnEditCategoryHandle(event);">
+                <i class="fa fa-pen"></i>
+            </button>
+        </div>
+    </p>
+    <div class="collapse show" id="collapse-{{ category.pk }}">
+        <div class="btn-toolbar">
+            {% for tag in category.tag_set.all %}
+                {% include 'monsters/tag_item.html' %}
+            {% empty %}
+                <div class="btn-group me-3 mb-2" role="group">
+                    <p class="btn btn-dark mb-0 disabled">No tags</p>
+                </div>
+            {% endfor %}
+            <div class="btn-group me-3 mb-2" role="group">
+                <label for="create-{{ category.pk }}" class="btn btn-outline-success">Create new</label>
+                <button type="button" class="btn btn-success btn-add-tag" id="create-{{ category.pk }}" data-cat="{{ category.pk }}" onclick="btnAddTagHandle(event);">
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="category-{{ category.pk }}-name" value="{{ category.name }}">
+{% empty %}
+    No categories
+{% endfor %}
+<p class="mt-3 mb-2">
+    <div class="btn-group me-3 mb-2" role="group">
+        <label for="create-category" class="btn btn-outline-success">Create category</label>
+        <button type="button" class="btn btn-success btn-add-category" id="create-category" onclick="btnAddCategoryHandle(event);">
+            <i class="fa fa-plus"></i>
+        </button>
+    </div>
+</p>

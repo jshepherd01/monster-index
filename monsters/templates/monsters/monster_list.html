@@ -1,0 +1,31 @@
+<label for="monsterName" class="btn btn-outline-secondary">Name</label>
+<input onchange="monsterNameChoose(event);" class="form-control" type="text"
+    list="monsterNameList" id="monsterName" placeholder="..." autocomplete="off">
+<datalist id="monsterNameList">
+    {% for monster in monster_list %}
+        <option value="{{ monster.name }}" data-pk="{{ monster.pk }}">
+    {% empty %}
+        <option value="No monsters yet">
+    {% endfor %}
+</datalist>
+<button class="btn btn-secondary hidden"
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+    title="A monster with that name already exists. Click here to start editing it."
+    id="editMonster" type="button">
+    <i class="fa fa-pen"></i>
+</button>
+<button class="btn btn-secondary hidden"
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+    title="You are currently editing a monster. Click to make this a new monster instead."
+    id="addMonster" type="button" onclick="addMonsterHandle(event);">
+    <i class="fa fa-times"></i>
+</button>
+<label for="monsterXP" class="btn btn-outline-secondary">CR</label>
+<select class="form-select" id="monsterXP" onchange="monsterXPHandle(event);">
+    <option selected disabled value="-1">Choose</option>
+    {% for cr in cr_list %}
+        <option value="{{ cr.pk }}">{{ cr }}</option>
+    {% empty %}
+        <option value="-2">An error has occurred</option>
+    {% endfor %}
+</select>

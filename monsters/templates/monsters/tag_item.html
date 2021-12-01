@@ -1,0 +1,11 @@
+<div class="btn-group me-3 mb-2" role="group">
+    <input type="checkbox" class="btn-check btn-choose-tag" id="tag-{{ tag.pk }}" autocomplete="off" data-tag="{{ tag.pk }}" onchange="btnChooseTagHandle(event);">
+    <label class="btn btn-outline-primary" for="tag-{{ tag.pk }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{{ tag.info }}">{{ tag.name }}</label>
+    <button type="button" class="btn btn-primary btn-edit-tag" data-tag="{{ tag.pk }}" onclick="btnEditTagHandle(event);">
+        <i class="fa fa-pen"></i>
+    </button>
+</div>
+
+<input type="hidden" id="tag-{{ tag.pk }}-name" value="{{ tag.name }}">
+<input type="hidden" id="tag-{{ tag.pk }}-categorypk" value="{{ tag.category.pk }}">
+<input type="hidden" id="tag-{{ tag.pk }}-info" value="{{ tag.info }}">

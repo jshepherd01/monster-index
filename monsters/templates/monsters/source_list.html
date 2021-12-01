@@ -1,0 +1,28 @@
+<div class="form-floating mb-3">
+    <select class="form-select" id="sourceChoosePk" oninput="sourceChoosePkHandle(event); ">
+        <option value="-1" selected disabled>Choose a Source</option>
+        {% for source in source_list %}
+            <option value="{{ source.pk }}">{{ source.abbr_name }} - {{ source.name }}</option>
+        {% empty %}
+            <option>No sources are available</option>
+        {% endfor %}
+    </select>
+    <label for="sourceChoosePk" id="sourceChooseOfficial">Full Name</label>
+</div>
+<div class="input-group mb-3" role="group">
+    <label for="sourceChooseNew" class="btn btn-outline-secondary" id="sourceChooseAbbr">Choose</label>
+    <button type="button" class="btn btn-primary btn-edit-source hidden" id="sourceChooseEdit" onclick="sourceChooseEditHandle(event); ">
+        <i class="fa fa-pen"></i>
+    </button>
+    <button type="button" class="btn btn-success btn-add-source" id="sourceChooseNew" onclick="sourceChooseNewHandle(event); ">
+        <i class="fa fa-plus"></i>
+    </button>
+    <input class="form-control" type="number" id="sourceChoosePage" placeholder="Page Number" step="1" min="1" max="1" onchange="sourceChoosePageHandle(event);">
+</div>
+{% for source in source_list %}
+    <input type="hidden" id="source-{{ source.pk }}-name" value="{{ source.name }}">
+    <input type="hidden" id="source-{{ source.pk }}-abbr-name" value="{{ source.abbr_name }}">
+    <input type="hidden" id="source-{{ source.pk }}-official" value="{{ source.official }}">
+    <input type="hidden" id="source-{{ source.pk }}-pages" value="{% if source.pages == None %}Infinity{% else %}{{ source.pages }}{% endif %}">
+{% empty %}
+{% endfor %}
