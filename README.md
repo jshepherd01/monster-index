@@ -1,3 +1,5 @@
+### This project is now obsolete. A newer version is being created.
+
 # monster-index
 A system for keeping track of D&amp;D monsters
 
